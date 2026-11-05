@@ -1,0 +1,304 @@
+/* ==========================================================================
+   ANAHAT BY KANWAL - GLOBAL STYLESHEET
+   Theme: Sage Green (#758b76), Cream (#f8f5ed), Ivory/Paper (#fffdf8), Ink (#252820)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Variables & Reset
+   -------------------------------------------------------------------------- */
+:root {
+  --sage: #758b76;
+  --sage-dark: #526b58;
+  --sage-pale: #e4e9df;
+  --cream: #f8f5ed;
+  --paper: #fffdf8;
+  --ink: #252820;
+  --muted: #6c6e64;
+  --rose: #d98b76;
+  --rose-dark: #bd6c70;
+  --gold: #bd9561;
+  --line: #deded1;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'DM Sans', Arial, sans-serif;
+  --shadow: 0 12px 35px rgba(47, 57, 43, 0.09);
+  --radius: 8px;
+  --radius-lg: 16px;
+  --radius-md: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body.drawer-open {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+/* ==========================================================================
+   PRODUCT CARD ACTION BUTTONS STYLING
+   ========================================================================== */
+.product-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.btn-card {
+  flex: 1;
+  padding: 10px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: var(--radius, 6px);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+/* Add to Bag Button Style */
+.btn-add-bag {
+  background:var(--sage);
+  color: var(--cream, #f8f5ed);
+  border: 1px solid var(--sage);
+}
+
+.btn-add-bag:hover {
+  background: var(--sage-dark, #526b58);
+}
+
+/* Buy Now Button Style */
+.btn-buy-now {
+  background:var(--sage);
+  color: var(--cream, #f8f5ed);
+  border: 1px solid var(--sage);
+}
+
+.btn-buy-now:hover {
+  background: var(--sage-dark, #526b58);
+  border-color: var(--sage-dark, #526b58);
+}
+
+
+/* Toast Notification Design */
+.toast {
+  position: fixed;
+  z-index: 9999;
+  bottom: 30px;
+  left: 50%;
+  transform: translate(-50%, 40px);
+  padding: 12px 24px;
+  background: var(--sage-dark, #526b58);
+  color: #fffdf8;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  text-align: center;
+}
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+/* ==========================================================================
+   UPDATED MOBILE RESPONSIVE FIXES FOR INDEX PAGE
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  /* 1. Hero Buttons & Side Card Fixes */
+  .hero {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding-bottom: 20px !important;
+  }
+
+  .hero-copy {
+    padding: 30px 16px 15px 16px !important;
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  .hero h1 {
+    font-size: 40px !important;
+    line-height: 1.35 !important;
+  }
+  .hero p {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    width: 220px;
+  }
+  /* Hero buttons ko ek sath side-by-side aur compact karne ke liye */
+  .hero-buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    width: 100px !important;
+    margin-top: 15px !important;
+  }
+
+  .hero-buttons .button {
+    flex: 1 !important;
+    padding: 0 6px !important;
+    font-size: 10px !important;
+    min-height: 38px !important;
+    white-space: nowrap !important;
+    gap: 6px !important;
+  }
+
+  /* 2. "The New Collection" Side Card Fix (Height choti aur compact) */
+ .hero-side-card {
+    margin: 12px 16px 8px 16px !important;
+    width: calc(100% - 32px) !important;
+    max-width: 150px !important; /* Width kam kar di gayi hai */
+    padding: 14px 16px !important;
+    min-height: auto ;
+  }
+
+  .hero-side-card strong {
+    font-size: 16px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .side-card-copy {
+    font-size: 10.5px !important;
+  }
+
+  .round-arrow {
+    width: 24px !important;
+    height: 24px !important;
+    margin-top: 8px !important;
+    font-size: 12px !important;
+  }
+  /* 3. Product Cards & Grid Fixes (Buttons alignment fix) */
+.product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    padding: 0 4px !important;
+  }
+
+  .product-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+  }
+
+  .product-info {
+    padding: 10px 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+  }
+
+  .product-price {
+    margin-top: auto !important;
+    margin-bottom: 8px !important;
+  }
+
+  .product-card-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    margin-top: 0 !important;
+  }
+
+  .btn-card {
+    width: 100% !important;
+    padding: 7px 4px !important;
+    font-size: 9.5px !important;
+  }
+  /* 4. Story Section Fixes (Proper stacking for image and content) */
+  .story-section {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .story-image {
+    width: 100% !important;
+    min-height: 280px !important;
+    position: relative !important;
+  }
+
+  .story-content {
+    padding: 30px 18px !important;
+    text-align: left !important;
+  }
+
+  .story-content h2 {
+    font-size: 26px !important;
+  }
+
+
+}
+@media (max-width: 760px) {
+  /* Category Grid ko 3 columns mein set kar diya taake 3 upar aur 3 neechay ayein */
+  .category-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap:35px 10px !important;
+    max-width: 100% !important;
+    padding: 0 10px !important;
+  }
+
+  .category-card {
+    text-align: center !important;
+  }
+
+  .category-card img {
+    aspect-ratio: 3 / 4 !important;
+    border-radius: 40px 40px 6px 6px !important;
+  }
+
+  .category-card span {
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+    margin-top: 6px !important;
+    word-break: break-word !important;
+  }
+}

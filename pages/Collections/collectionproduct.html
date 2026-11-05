@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#758b76" />
+  <title>Artisan Collections | Embellished Shirts & Stoles – Anahat by Kanwal</title>
+<meta name="description" content="Explore our artisanal collection featuring hand-painted silk stoles, custom embellished western shirts, and handcrafted accessories made in Pakistan." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" /> -->
+
+  <style>
+    /* Global CSS Variables & Reset */
+    :root {
+      --sage: #758b76;
+      --sage-dark: #526b58;
+      --sage-pale: #e4e9df;
+      --cream: #f8f5ed;
+      --paper: #fffdf8;
+      --ink: #252820;
+      --muted: #6c6e64;
+      --rose: #d98b76;
+      --rose-dark: #bd6c70;
+      --gold: #bd9561;
+      --line: #deded1;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', Arial, sans-serif;
+      --shadow: 0 12px 35px rgba(47, 57, 43, .09);
+      --radius: 6px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; overflow-x: hidden; }
+    body.drawer-open { overflow: hidden; }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; color: inherit; }
+    button { cursor: pointer; border: none; background: none; -webkit-tap-highlight-color: transparent; }
+
+    .product-image-wrap img, .product-name { cursor: pointer; }
+
+    /* Main Shop / Filter Section */
+    .shop-section { padding: 40px clamp(20px, 5.5vw, 82px) 60px; }
+    .section-header { margin-bottom: 24px; }
+    .section-header h2 { font: 500 28px/1.2 var(--serif); color: var(--ink); margin-bottom: 6px; }
+    .section-header p { font-size: 13px; color: var(--muted); }
+
+    /* Multi-Filter Bar */
+    .filter-panel {
+      background: var(--paper); padding: 22px 28px; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02); margin-bottom: 36px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;
+    }
+    .filter-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .filter-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+    .filter-chips { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .filter-chip {
+      border: 1px solid #d4d9ce; background: transparent; color: #4c5349; border-radius: 30px; padding: 6px 15px; font-size: 11px; font-weight: 500; transition: all .2s;
+    }
+    .filter-chip:hover, .filter-chip.active { background: var(--sage); border-color: var(--sage); color: #fff; }
+    .select-dropdown { background: white; border: 1px solid var(--line); padding: 8px 14px; border-radius: var(--radius); font-size: 12px; color: var(--ink); cursor: pointer; outline: none; }
+
+    /* Product Grid */
+    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; margin-bottom: 40px; }
+    .product-card {
+      background: var(--paper); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(67, 76, 61, .08); transition: transform .25s ease, box-shadow .25s ease; display: flex; flex-direction: column;
+    }
+    .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .product-image-wrap { position: relative; aspect-ratio: 4/4.8; background: #e8e1d6; overflow: hidden; }
+    .product-image-wrap img { transition: transform .6s ease; }
+    .product-card:hover .product-image-wrap img { transform: scale(1.05); }
+
+    .badge-stack { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 4px; z-index: 2; }
+    .product-badge { background: var(--sage); color: white; border-radius: 4px; padding: 4px 8px; font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    .product-info { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+    .product-category { font-size: 9px; letter-spacing: .1em; color: var(--sage-dark); text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+    .product-name { font: 500 16px/1.3 var(--serif); margin-bottom: 8px; color: var(--ink); }
+    .product-rating { font-size: 11px; color: var(--gold); letter-spacing: 1px; margin-bottom: 10px; display: flex; align-items: center; gap: 4px; }
+    .product-rating span { color: var(--muted); font-size: 10px; letter-spacing: normal; }
+    .product-price { font-size: 14px; font-weight: 700; margin-top: auto; margin-bottom: 12px; color: var(--ink); }
+    .product-price del { font-size: 11px; color: #9b9b91; font-weight: 400; margin-left: 8px; }
+
+    .product-card-footer { display: flex; gap: 8px; }
+    .add-cart {
+      flex: 1; min-height: 36px; border: 1px solid var(--sage); background: transparent; color: var(--sage-dark); border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.03em; transition: background 0.2s, color 0.2s;
+    }
+    .add-cart:hover { background: var(--sage); color: white; }
+
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 15px; font-family: var(--serif); grid-column: 1 / -1; }
+
+    /* Buttons */
+    .button {
+      min-height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 0 22px; border-radius: var(--radius); font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; border: 1px solid transparent; transition: transform .2s, background .2s, border-color .2s;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--sage); border-color: var(--sage); color: white; }
+    .button-primary:hover { background: var(--sage-dark); }
+    .button-outline { border: 1px solid var(--line); background: white; color: var(--ink); }
+
+    /* Story Section */
+    .story-section {
+      background: var(--paper); color: var(--ink); padding: 50px clamp(20px, 5.5vw, 82px); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 10px; letter-spacing: .2em; font-weight: 700; color: var(--sage-dark); text-transform: uppercase; }
+    .hero-eyebrow i { display: inline-block; width: 30px; height: 1px; background: var(--gold); }
+
+    
+    /* Inline Product Detail View */
+    .product-detail-view {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 40px; margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; box-shadow: var(--shadow);
+    }
+    .detail-image-wrap { aspect-ratio: 1/1; border-radius: var(--radius); overflow: hidden; background: #e8e1d6; }
+    .detail-info h1 { font: 500 32px var(--serif); color: var(--ink); margin: 10px 0 14px; }
+    .detail-price { font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 20px; }
+    .detail-price del { font-size: 14px; color: var(--muted); font-weight: 400; margin-left: 10px; }
+    .detail-description { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+    .option-group { margin-bottom: 20px; }
+    .option-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink); display: block; margin-bottom: 8px; }
+    .size-chips { display: flex; gap: 8px; }
+    .size-chip { border: 1px solid var(--line); background: white; padding: 8px 16px; border-radius: 4px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+    .size-chip.active { background: var(--sage); border-color: var(--sage); color: white; }
+    .detail-actions { display: flex; gap: 12px; margin-top: 30px; }
+    .back-button {
+      background: transparent; border: none; color: var(--sage-dark); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 20px;
+    }
+    .back-button:hover { color: var(--ink); }
+
+/* Product Card Actions (Dual Buttons Design) */
+.product-card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.btn-card {
+  padding: 8px 6px;
+  border-radius: var(--radius);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btn-add-bag {
+  background: var(--sage);
+  color: var(--paper);
+  border: 1px solid var(--sage);
+}
+
+.btn-add-bag:hover {
+  background: var(--sage-dark);
+}
+
+.btn-buy-now {
+  background: var(--sage);
+  color: var(--paper);
+  border: 1px solid var(--sage);
+}
+
+.btn-buy-now:hover {
+  background: var(--sage-dark);
+  border-color: var(--sage-dark);
+}
+
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    z-index: 100;
+    bottom: 24px;
+    left: 50%;
+    transform: translate(-50%, 30px);
+    padding: 12px 24px;
+    background: #2e3e31;
+    color: white;
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, transform .3s;
+    text-align: center;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+@media (max-width: 760px) {
+  /* Product Grid */
+  .product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  /* Har product card aik flex container hoga taake height barabar rahe */
+  .product-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    background: #fffdf8;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  /* Product info section poori available height le ga */
+  .product-info {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    padding: 12px 10px !important;
+  }
+
+  /* Title ki height fix kar dein taake 1 ya 2 lines hone par bhi layout kharab na ho */
+  .product-name, 
+  .product-title {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    min-height: 34px !important; /* 2 lines ke barabar space fix kar di */
+    display: -webkit-box;
+  
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Price ko automatically upar dhakel kar buttons ko bottom par lock kar dega */
+  .product-price {
+    margin-top: auto !important;
+    margin-bottom: 10px !important;
+    font-size: 13px !important;
+  }
+
+  /* Buttons hamesha card ke bilkul bottom par aik sath align rahenge */
+  .product-card-actions,
+  .product-card-footer {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    margin-top: 0 !important;
+  }
+
+  .btn-card,
+  .btn-add-bag,
+  .btn-buy-now,
+  .add-cart {
+    width: 100% !important;
+    padding: 8px 4px !important;
+    font-size: 9.5px !important;
+  }
+}
+/* ==========================================================================
+   OPTIMIZED CHIPS WRAPPING LAYOUT (NO WASTED SPACE)
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  #categoryChips,
+  .filter-chips-container,
+  .category-filter-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important; /* Chips ke darmiyan gap kam kiya gaya hai */
+    justify-content: flex-start !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .filter-chip {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    padding: 6px 12px !important; /* Padding thodi kam ki hai taake jagah bache */
+    font-size: 11px !important;
+    border-radius: 16px !important;
+  }
+}
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <!-- Header Placeholder -->
+  <div id="header-placeholder"></div>
+
+  <main>
+    <!-- Main Collection View -->
+    <section class="shop-section" id="shop">
+      <div class="section-header">
+        <h2>Curated Collection Gallery</h2>
+        <p>Filter by category, season, or sort to find your favorite Artisan pieces.</p>
+      </div>
+
+      <!-- Advanced Filter Panel -->
+      <div class="filter-panel">
+        <div class="filter-group">
+          <span class="filter-label">Category:</span>
+          <div class="filter-chips" id="categoryChips">
+            <button class="filter-chip active" data-category="All">All Items</button>
+            <button class="filter-chip" data-category="Hand Paint Dresses">Hand Paint Dresses</button>
+            <button class="filter-chip" data-category="Winter Cap Shawal">Winter Cap Shawal</button>
+            <button class="filter-chip" data-category="Hijabs & Stoles">Hijabs & Stoles</button>
+            <button class="filter-chip" data-category="Abayas">Abayas</button>
+            <button class="filter-chip" data-category="Art & Craft">Art & Craft</button>
+            <button class="filter-chip" data-category="Calligraphy & Decor">Calligraphy & Decor</button>
+          </div>
+        </div>
+
+        <div class="filter-group" style="margin-left: auto;">
+          <div>
+            <label for="seasonSelect" class="filter-label">Season:</label>
+            <select id="seasonSelect" class="select-dropdown">
+              <option value="All">All Seasons</option>
+              <option value="Spring/Summer">Spring/Summer 2026</option>
+              <option value="Autumn/Winter">Autumn/Winter Collection</option>
+              <option value="Signature Edition">Signature Edition</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="sortSelect" class="filter-label">Sort By:</label>
+            <select id="sortSelect" class="select-dropdown">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden>No products found matching your active filter criteria.</div>
+    </section>
+
+    <!-- Inline Product Detail View Container -->
+    <section class="shop-section" id="productDetailSection" hidden>
+      <div id="productDetailContainer"></div>
+    </section>
+
+    <!-- Heritage Story Section -->
+    <section class="story-section" id="story">
+      <div style="max-width: 620px;">
+        <div class="hero-eyebrow"><i></i><span>HERITAGE &amp; ARTISTRY</span></div>
+        <h2 style="font-family: var(--serif); font-size: 28px;">The Story Behind Anahat Collections</h2>
+        <p style="color: var(--muted); margin-top: 8px; line-height: 1.6;">
+          Every piece in our collection represents a fusion of traditional eastern artistry with modern minimalist sensibilities. Hand-painted calligraphy and carefully selected organic fabrics bring effortless grace into your everyday lifestyle.
+        </p>
+      </div>
+      <div>
+        <a href="#shop" class="button button-primary">Explore Gallery <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Toast Notification System -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ======================================
+globle.js for component functionality
+=========================================== -->
+
+<script src="/static/script.js"></script>
+<script src="/static/global.js"></script>
+  
+</body>
+<script>
+
+
+// --- 2. INITIALIZATION ON DOM LOAD ---
+document.addEventListener("DOMContentLoaded", () => {
+  // Page 1: Index Page Bestsellers Renderer
+  if (document.getElementById("productGrid") && document.getElementById("heroTitle")) {
+    renderIndexBestsellers();
+  }
+
+  // Page 2: Collection Gallery Page Renderer
+  if (document.getElementById("categoryChips")) {
+    initCollectionsGallery();
+  }
+
+  // Page 3: Standalone Product Detail Page (product.html) Renderer
+  if (document.getElementById("productDetailViewApp")) {
+    initProductDetailPage();
+  }
+});
+
+// --- 3. INDEX PAGE BESTSELLERS LOGIC ---
+function renderIndexBestsellers() {
+  const grid = document.getElementById("productGrid");
+  if (!grid) return;
+
+  const bestsellers = PRODUCTS_DATA.filter((p) => p.featured);
+  grid.innerHTML = generateProductGridHTML(bestsellers);
+}
+
+
+  // Sort Dropdown Trigger
+  const sortSelect = document.getElementById("sortSelect");
+  if (sortSelect) {
+    sortSelect.addEventListener("change", (e) => {
+      activeSort = e.target.value;
+      filterAndRenderProducts();
+    });
+  }
+
+  filterAndRenderProducts();
+
+
+function updateActiveChipUI(catName) {
+  document.querySelectorAll(".filter-chip").forEach((c) => {
+    if (c.getAttribute("data-category") === catName) {
+      c.classList.add("active");
+    } else {
+      c.classList.remove("active");
+    }
+  });
+}
+
+function filterAndRenderProducts() {
+  const grid = document.getElementById("productGrid");
+  const emptyState = document.getElementById("emptyState");
+  if (!grid) return;
+
+  let filtered = [...PRODUCTS_DATA];
+
+  // Category Filter
+  if (activeCategory !== "All") {
+    filtered = filtered.filter((p) => p.category === activeCategory);
+  }
+
+  // Season Filter
+  if (activeSeason !== "All") {
+    filtered = filtered.filter((p) => p.season === activeSeason);
+  }
+
+  // Sorting
+  if (activeSort === "price-low") {
+    filtered.sort((a, b) => a.price - b.price);
+  } else if (activeSort === "price-high") {
+    filtered.sort((a, b) => b.price - a.price);
+  } else if (activeSort === "rating") {
+    filtered.sort((a, b) => b.rating - a.rating);
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = "";
+    if (emptyState) emptyState.hidden = false;
+  } else {
+    if (emptyState) emptyState.hidden = true;
+    grid.innerHTML = generateProductGridHTML(filtered);
+  }
+}
+
+// --- 5. DYNAMIC PRODUCT GRID HTML GENERATOR ---
+function generateProductGridHTML(products) {
+  return products
+    .map(
+      (product) => `
+    <div class="product-card" data-id="${product.id}">
+      <div class="product-image-wrap" onclick="navigateToProduct('${product.id}')">
+        <img src="${product.mainImage}" alt="${product.title}" loading="lazy" />
+        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
+      </div>
+
+      <div class="product-info">
+        <p class="product-category">${product.category}</p>
+        <h3 class="product-title" onclick="navigateToProduct('${product.id}')">${product.title}</h3>
+        <p class="product-price">Rs. ${product.price.toLocaleString()}</p>
+
+        <div class="product-card-actions">
+          <button type="button" class="btn-card btn-add-bag" onclick="handleCardAddToCart('${product.id}')">
+            <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+          </button>
+          <button type="button" class="btn-card btn-buy-now" onclick="handleCardBuyNow('${product.id}')">
+            Buy Now →
+          </button>
+        </div>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+// Navigation Helper
+function navigateToProduct(id) {
+  window.location.href = `/pages/Collections/product.html?product_id=${id}`;
+}
+
+// Global Card Actions
+function handleCardAddToCart(id) {
+  const item = PRODUCTS_DATA.find((p) => p.id === id);
+  if (item && typeof addToCart === "function") {
+    addToCart({ id: item.id, title: item.title, price: item.price, image: item.mainImage, size: item.sizes[0] || "Standard" }, 1);
+  }
+}
+
+function handleCardBuyNow(id) {
+  handleCardAddToCart(id);
+  window.location.href = "/pages/checkouts/checkout.html";
+}
+
+// --- 6. STANDALONE PRODUCT DETAIL PAGE CONTROLLER (product.html) ---
+let currentSelectedSize = "";
+let currentQuantity = 1;
+
+function initProductDetailPage() {
+  const appContainer = document.getElementById("productDetailViewApp");
+  if (!appContainer) return;
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get("product_id") || "anahat-001"; // Fallback to first item
+
+  const product = PRODUCTS_DATA.find((p) => p.id === productId) || PRODUCTS_DATA[0];
+  currentSelectedSize = product.sizes[0] || "Standard";
+  currentQuantity = 1;
+
+  appContainer.innerHTML = `
+    <div class="product-detail-wrapper" style="max-width: 1180px; margin: 30px auto; padding: 0 24px;">
+      <a href="/pages/Collections/collectionproduct.html" class="back-link" style="display:inline-block; font-size:11px; font-weight:700; text-transform:uppercase; color:var(--sage-dark); margin-bottom:20px;">← Back to Collections</a>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; background: var(--paper); padding: 40px; border-radius: 16px; border: 1px solid var(--line);">
+        
+        <!-- Left: Image Gallery -->
+        <div class="detail-gallery-side">
+          <div class="main-image-box" style="aspect-ratio: 4/5; border-radius: 12px; overflow: hidden; margin-bottom: 16px; border:1px solid var(--line);">
+            <img id="detailMainImg" src="${product.mainImage}" alt="${product.title}" style="width:100%; height:100%; object-fit:cover;" />
+          </div>
+          <div class="thumbnail-strip" style="display: flex; gap: 10px;">
+            ${product.galleryImages
+              .map(
+                (imgUrl) => `
+              <img src="${imgUrl}" class="thumb-img" onclick="switchDetailImage('${imgUrl}')" style="width: 70px; height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 1px solid var(--line);" />
+            `
+              )
+              .join("")}
+          </div>
+        </div>
+
+        <!-- Right: Specs & Buy Options -->
+        <div class="detail-content-side">
+          <span style="font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: var(--sage-dark);">${product.category}</span>
+          <h1 style="font: 500 32px var(--serif); color: var(--ink); margin: 6px 0 10px;">${product.title}</h1>
+          <p style="font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 16px;">Rs. ${product.price.toLocaleString()}</p>
+          
+          <p style="font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-bottom: 24px;">${product.description}</p>
+          <p style="font-size: 12px; color: var(--ink); margin-bottom: 20px;"><strong>Fabric:</strong> ${product.fabric}</p>
+
+          <!-- Size Selector & Size Guide Link -->
+          <div style="margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Select Size:</span>
+              <button type="button" onclick="openSizeGuideModal()" style="font-size: 11px; color: var(--sage-dark); text-decoration: underline; background: none; border: none; cursor: pointer;">Size Guide 📏</button>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              ${product.sizes
+                .map(
+                  (sz, idx) => `
+                <button type="button" class="detail-size-btn ${idx === 0 ? "active" : ""}" onclick="selectDetailSize(this, '${sz}')" style="padding: 8px 16px; border: 1px solid var(--line); background: white; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600;">${sz}</button>
+              `
+                )
+                .join("")}
+            </div>
+          </div>
+
+          <!-- Quantity Counter -->
+          <div style="margin-bottom: 30px;">
+            <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 8px;">Quantity:</span>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <button onclick="adjustDetailQty(-1)" style="width: 32px; height: 32px; border: 1px solid var(--line); background: white; border-radius: 6px; font-weight: bold;">-</button>
+              <span id="detailQtyVal" style="font-size: 14px; font-weight: 700;">1</span>
+              <button onclick="adjustDetailQty(1)" style="width: 32px; height: 32px; border: 1px solid var(--line); background: white; border-radius: 6px; font-weight: bold;">+</button>
+            </div>
+          </div>
+
+          <!-- Dual Action Buttons -->
+          <div style="display: flex; gap: 14px;">
+            <button type="button" class="button button-outline" onclick="submitDetailAddBag('${product.id}')" style="flex: 1;">Add to Bag</button>
+            <button type="button" class="button button-primary" onclick="submitDetailBuyNow('${product.id}')" style="flex: 1;">Buy Now →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Products Section -->
+      <section style="margin-top: 60px;">
+        <h3 style="font: 500 24px var(--serif); margin-bottom: 20px;">You May Also Like</h3>
+        <div class="product-grid">${generateProductGridHTML(PRODUCTS_DATA.filter((p) => p.id !== product.id).slice(0, 3))}</div>
+      </section>
+    </div>
+  `;
+}
+
+// Detail View Helpers
+function switchDetailImage(src) {
+  const mainImg = document.getElementById("detailMainImg");
+  if (mainImg) mainImg.src = src;
+}
+
+function selectDetailSize(btn, sz) {
+  document.querySelectorAll(".detail-size-btn").forEach((b) => {
+    b.style.background = "white";
+    b.style.color = "var(--ink)";
+    b.style.borderColor = "var(--line)";
+  });
+  btn.style.background = "var(--sage)";
+  btn.style.color = "white";
+  btn.style.borderColor = "var(--sage)";
+  currentSelectedSize = sz;
+}
+
+function adjustDetailQty(change) {
+  currentQuantity += change;
+  if (currentQuantity < 1) currentQuantity = 1;
+  const qtyVal = document.getElementById("detailQtyVal");
+  if (qtyVal) qtyVal.textContent = currentQuantity;
+}
+
+function submitDetailAddBag(id) {
+  const item = PRODUCTS_DATA.find((p) => p.id === id);
+  if (item && typeof addToCart === "function") {
+    addToCart({ id: item.id, title: item.title, price: item.price, image: item.mainImage, size: currentSelectedSize }, currentQuantity);
+  }
+}
+
+function submitDetailBuyNow(id) {
+  submitDetailAddBag(id);
+  window.location.href = "/pages/checkouts/checkout.html";
+}
+
+function openSizeGuideModal() {
+  alert("Size Guide:\nSmall: Bust 36\", Length 42\"\nMedium: Bust 40\", Length 44\"\nLarge: Bust 44\", Length 45\"\nX-Large: Bust 48\", Length 46\"");
+}
+
+
+
+function generateProductGridHTML(products) {
+  return products
+    .map(
+      (product) => `
+    <div class="product-card" data-id="${product.id}">
+      <div class="product-image-wrap" onclick="navigateToProduct('${product.id}')">
+        <img src="${product.mainImage}" alt="${product.title}" loading="lazy" />
+        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
+      </div>
+
+      <div class="product-info">
+        <p class="product-category">${product.category}</p>
+        <h3 class="product-title" onclick="navigateToProduct('${product.id}')">${product.title}</h3>
+        
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+          <p class="product-price" style="margin: 0;">Rs. ${product.price.toLocaleString()}</p>
+          ${product.originalPrice ? `<span style="font-size: 13px; color: var(--muted); text-decoration: line-through;">Rs. ${product.originalPrice.toLocaleString()}</span>` : ''}
+        </div>
+
+        <div class="product-card-actions">
+          <button type="button" class="btn-card btn-add-bag" onclick="handleCardAddToCart('${product.id}')">
+            <i class="fa-solid fa-bag-shopping"></i> Add to Bag
+          </button>
+          <button type="button" class="btn-card btn-buy-now" onclick="handleCardBuyNow('${product.id}')">
+            Buy Now →
+          </button>
+        </div>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+</script>
+   
+</html>

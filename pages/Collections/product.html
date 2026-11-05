@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Product Name] – Handcrafted Fashion & Decor | Anahat by Kanwal</title>
+<meta name="description" content="Buy [Product Name] online. Beautifully crafted with fabric paint and embellishments. Unique handcrafted design by Anahat by Kanwal." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<style>
+    /* ==========================================================================
+   ANAHAT BY KANWAL - GLOBAL STYLESHEET
+   ========================================================================== */
+:root {
+  --sage: #758b76;
+  --sage-dark: #526b58;
+  --sage-pale: #e4e9df;
+  --cream: #f8f5ed;
+  --paper: #fffdf8;
+  --ink: #252820;
+  --muted: #6c6e64;
+  --rose: #d98b76;
+  --line: #deded1;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'DM Sans', Arial, sans-serif;
+  --shadow: 0 12px 35px rgba(47, 57, 43, 0.09);
+  --radius: 8px;
+  --radius-md: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+/* ==========================================================================
+   RESPONSIVE PRODUCT DETAIL GALLERY & LAYOUT STYLES
+   ========================================================================== */
+.product-detail-wrapper {
+  max-width: 1180px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  margin-bottom: 24px;
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  background: var(--paper);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+/* Gallery Styling */
+.product-gallery-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.main-image-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.main-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Thumbnail Rail (Horizontal on mobile, vertical or scrollable) */
+.thumbnail-rail {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+
+.thumb-item {
+  width: 70px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid var(--line);
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.thumb-item:hover,
+.thumb-item.active {
+  opacity: 1;
+  border-color: var(--sage-dark);
+}
+
+/* Details Info Styling */
+.product-details-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detail-category {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--sage-dark);
+  margin-bottom: 6px;
+}
+
+.detail-title {
+  font: 500 28px var(--serif);
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.detail-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.detail-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.detail-fabric {
+  font-size: 12px;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+
+.detail-section {
+  margin-bottom: 24px;
+}
+
+.size-guide-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.size-guide-btn {
+  font-size: 11px;
+  color: var(--sage-dark);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.size-buttons-wrap {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.detail-size-btn {
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.detail-size-btn.active {
+  border-color: var(--sage);
+  background: var(--sage);
+  color: white;
+}
+
+.quantity-selector-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.qty-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.qty-value {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.detail-action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.btn-detail-bag,
+.btn-detail-buynow {
+  padding: 14px;
+  border-radius: var(--radius);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-detail-bag {
+  background: var(--sage);
+  color: white;
+  border: 1px solid var(--sage);
+}
+
+.btn-detail-buynow {
+  background: var(--sage);
+  color: white;
+  border: 1px solid var(--sage);
+}
+
+.related-products-section {
+  margin-top: 60px;
+}
+
+.related-title {
+  font: 500 24px var(--serif);
+  color: var(--ink);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    z-index: 100;
+    bottom: 24px;
+    left: 50%;
+    transform: translate(-50%, 30px);
+    padding: 12px 24px;
+    background: #2e3e31;
+    color: white;
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, transform .3s;
+    text-align: center;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+
+/* Custom sizing for related products section */
+.related-products-section .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.related-products-section .product-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.related-products-section .product-image-wrap {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+}
+
+.related-products-section .product-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.related-products-section .product-info {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+/* Responsive Breakpoints for Mobile View */
+@media (max-width: 768px) {
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .detail-title {
+    font-size: 24px;
+  }
+
+  .detail-action-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+<body>
+
+  <!-- Dynamic Header -->
+  <div id="header-placeholder"></div>
+
+  <!-- Dynamic Product Detail Controller App Mount -->
+  <div id="productDetailViewApp"></div>
+
+
+ <!-- Toast Notification System -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Dynamic Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Global Component Loader & Global Cart State -->
+  <script src="/static/global.js"></script>
+
+  <!-- Central Catalog & Routing Script -->
+  <script src="/static/script.js"></script>
+</body>
+</html>

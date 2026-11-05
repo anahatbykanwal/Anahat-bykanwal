@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout & Bag | Anahat by Kanwal</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="/static/global.js" defer></script>
+  <style>
+    body { 
+      background: var(--cream, #f8f5ed); 
+      font-family: 'DM Sans', sans-serif; 
+      color: var(--ink, #252820); 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    .checkout-wrapper { 
+      max-width: 1000px; 
+      margin: 40px auto; 
+      padding: 0 24px 60px; 
+    }
+    
+    .checkout-card { 
+      background: var(--paper, #fffdf8); 
+      border-radius: 8px; 
+      border: 1px solid #deded1; 
+      padding: 36px; 
+      box-shadow: 0 12px 35px rgba(47, 57, 43, .09); 
+    }
+    
+    h1 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 28px; 
+      margin-bottom: 24px; 
+      color: var(--ink, #252820); 
+    }
+    
+    .grid-layout { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 60px; 
+    }
+    
+    @media(max-width: 820px) { 
+      .grid-layout { grid-template-columns: 1fr; gap: 35px; } 
+    }
+
+    .support-banner {
+      background: #f4f1ea;
+      border: 1px solid #deded1;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+    .support-banner a {
+      color: var(--sage-dark, #526b58);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .support-banner a:hover {
+      text-decoration: underline;
+    }
+    
+    .cart-item { 
+      display: grid; 
+      grid-template-columns: 65px 1fr auto auto; 
+      gap: 14px; 
+      align-items: center; 
+      padding: 14px 0; 
+      border-bottom: 1px solid #deded1; 
+    }
+    
+    .cart-item img { 
+      width: 65px; 
+      height: 65px; 
+      object-fit: cover; 
+      border-radius: 6px; 
+      border: 1px solid #eee; 
+    }
+    
+    .qty-btn { 
+      width: 24px; 
+      height: 24px; 
+      border: 1px solid #bd9561; 
+      background: #fff; 
+      cursor: pointer; 
+      border-radius: 4px; 
+      font-weight: bold; 
+      color: var(--ink, #252820); 
+      transition: all 0.2s; 
+    }
+    .qty-btn:hover { 
+      background: var(--sage, #758b76); 
+      color: white; 
+      border-color: var(--sage, #758b76); 
+    }
+    
+    .form-row { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 14px; 
+    }
+    
+    @media(max-width: 480px) { 
+      .form-row { grid-template-columns: 1fr; } 
+    }
+    
+    .form-group { 
+      margin-bottom: 16px; 
+      position: relative;
+    }
+    
+    .form-group label { 
+      display: block; 
+      font-size: 11px; 
+      font-weight: 700; 
+      text-transform: uppercase; 
+      margin-bottom: 6px; 
+      color: var(--sage-dark, #526b58); 
+      letter-spacing: 0.5px; 
+    }
+    
+    .form-group input, 
+    .form-group textarea, 
+    .form-group select { 
+      width: 100%; 
+      padding: 11px; 
+      border: 1px solid #deded1; 
+      border-radius: 6px; 
+      font-size: 13px; 
+      outline: none; 
+      background: #fff; 
+      box-sizing: border-box; 
+      font-family: inherit; 
+    }
+    
+    .form-group input:focus, 
+    .form-group textarea:focus { 
+      border-color: var(--sage, #758b76); 
+    }
+
+    /* Custom Field Error Text Style */
+    .field-error {
+      color: #b33939;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 4px;
+      display: none;
+    }
+    
+    .payment-option { 
+      background: #f4f1ea; 
+      border: 1px solid #deded1; 
+      padding: 12px 14px; 
+      border-radius: 6px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: flex-start;
+      gap: 10px; 
+      font-size: 13px; 
+      font-weight: 500; 
+      color: var(--ink, #252820); 
+    }
+
+    .payment-option input[type="radio"] {
+      width: auto !important;
+      margin: 0;
+      cursor: pointer;
+    }
+    
+    .total-row { 
+      display: flex; 
+      justify-content: space-between; 
+      font-size: 18px; 
+      font-weight: 700; 
+      margin-top: 20px; 
+      padding-top: 15px; 
+      border-top: 2px solid #deded1; 
+      color: var(--ink, #252820); 
+    }
+    
+    .btn-brand-order { 
+      width: 100%; 
+      background: var(--sage-dark, #526b58); 
+      color: white; 
+      border: none; 
+      padding: 15px; 
+      border-radius: 6px; 
+      font-weight: 700; 
+      text-transform: uppercase; 
+      font-size: 13px; 
+      letter-spacing: 1px; 
+      cursor: pointer; 
+      margin-top: 15px; 
+      transition: background 0.3s ease; 
+    }
+    .btn-brand-order:hover { 
+      background: var(--sage, #758b76); 
+    }
+    
+/* Toast Notification */
+.toast {
+    position: fixed;
+    z-index: 100;
+    bottom: 24px;
+    left: 50%;
+    transform: translate(-50%, 30px);
+    padding: 12px 24px;
+    background: #2e3e31;
+    color: white;
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, transform .3s;
+    text-align: center;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+/* ==========================================================================
+   CHECKOUT / CART ITEMS MOBILE RESPONSIVE FIXES
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  /* Cart item container ko flexible banayein taake elements overflow na karein */
+  .checkout-item, 
+  .cart-item-row,
+  .cart-item {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 14px 10px !important;
+    border-bottom: 1px solid var(--line, #deded1);
+    position: relative;
+  }
+
+  /* Checkbox aur Product Image alignment */
+  .checkout-item input[type="checkbox"],
+  .cart-item-checkbox {
+    flex-shrink: 0;
+  }
+
+  .checkout-item img,
+  .cart-item-img {
+    width: 60px !important;
+    height: 75px !important;
+    object-fit: cover !important;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  /* Item Title & Details section */
+  .checkout-item-details,
+  .cart-item-info {
+    flex: 1 1 140px !important;
+    min-width: 0 !important;
+  }
+
+  .checkout-item-title,
+  .cart-item-title {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    line-height: 1.25 !important;
+    margin-bottom: 4px !important;
+    white-space: normal !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Quantity buttons aur Total Price ki row */
+  .checkout-item-actions,
+  .cart-item-controls {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+    border-top: 1px dashed rgba(222, 222, 209, 0.6);
+  }
+
+  /* Quantity selector styling */
+  .quantity-controls,
+  .cart-qty-wrap {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .quantity-controls button,
+  .cart-qty-btn {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 13px !important;
+    border: 1px solid var(--line, #deded1);
+    background: #fff;
+    border-radius: 4px;
+    display: grid;
+    place-items: center;
+  }
+
+  /* Total Price styling on mobile */
+  .checkout-item-price,
+  .cart-item-total {
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    color: var(--ink, #252820);
+  }
+
+  /* Remove link styling */
+  .remove-item,
+  .cart-remove-btn {
+    font-size: 11px !important;
+    color: #c95656 !important;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 2px;
+    display: inline-block;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic Header Placeholder -->
+  <div id="header-placeholder"></div>
+
+  <div class="checkout-wrapper">
+    <a href="javascript:history.back()" style="text-decoration:none; color:var(--sage-dark,#526b58); font-weight:bold; font-size:12px; display:inline-block; margin-bottom:10px;">← Continue Shopping</a>
+    
+    <!-- Support & Direct Call Banner -->
+    <div class="support-banner">
+      <span>Need assistance before ordering?</span>
+      <span>📞 Direct SIM Call: <a href="tel:03274518801">0327-4518801</a></span>
+    </div>
+
+    <div class="checkout-card">
+      <h1>Your Shopping Bag & Checkout</h1>
+
+      <div class="grid-layout">
+        <!-- Selected Items View -->
+        <div>
+          <h3 style="font-family:'Playfair Display', serif; margin-bottom:15px; color:var(--sage-dark,#526b58);">Selected Items</h3>
+         
+          <div id="cartList"></div>
+          <div class="total-row">
+            <span>Subtotal:</span>
+            <span id="cartSubtotal">Rs. 0</span>
+          </div>
+        </div>
+
+        <!-- Shipping Details & Order Form -->
+        <div>
+          <h3 style="font-family:'Playfair Display', serif; margin-bottom:15px; color:var(--sage-dark,#526b58);">Shipping Details</h3>
+          <!-- novalidate added to stop default browser popup/scrolling -->
+          <form id="orderForm" novalidate>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cFirstName">First Name *</label>
+                <input type="text" id="cFirstName" placeholder="e.g. Ayesha" />
+                <div class="field-error" id="err-cFirstName">This field cannot be empty.</div>
+              </div>
+              <div class="form-group">
+                <label for="cLastName">Last Name *</label>
+                <input type="text" id="cLastName" placeholder="e.g. Khan" />
+                <div class="field-error" id="err-cLastName">This field cannot be empty.</div>
+              </div>
+            </div>
+
+            <!-- Contact Numbers -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cWhatsApp">WhatsApp Number *</label>
+                <input type="tel" id="cWhatsApp" placeholder="e.g. 03001234567" />
+                <div class="field-error" id="err-cWhatsApp">This field cannot be empty.</div>
+              </div>
+              <div class="form-group">
+                <label for="cSimPhone">SIM / Call Number *</label>
+                <input type="tel" id="cSimPhone" placeholder="e.g. 03211234567" />
+                <div class="field-error" id="err-cSimPhone">This field cannot be empty.</div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cCity">City *</label>
+                <input type="text" id="cCity" placeholder="e.g. Lahore" />
+                <div class="field-error" id="err-cCity">This field cannot be empty.</div>
+              </div>
+              <div class="form-group">
+                <label for="cPostalCode">Postal Code (Optional)</label>
+                <input type="text" id="cPostalCode" placeholder="e.g. 54000" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cAddress">Complete Address *</label>
+              <textarea id="cAddress" rows="2" placeholder="House/Street No, Block/Sector, Area"></textarea>
+              <div class="field-error" id="err-cAddress">This field cannot be empty.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="cLandmark">Nearest Landmark (Optional)</label>
+              <input type="text" id="cLandmark" placeholder="e.g. Near Famous Mosque / Park" />
+            </div>
+
+            <div class="form-group">
+              <label>Payment Method</label>
+              <div class="payment-option">
+                <input type="radio" id="cod" name="payment" value="COD" checked readonly />
+                <label for="cod" style="margin:0; cursor:pointer; text-transform:none; font-weight:500; font-size:13px; color:var(--ink,#252820);">Cash on Delivery (COD)</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cNotes">Special Delivery Notes (Optional)</label>
+              <input type="text" id="cNotes" placeholder="e.g. Call before delivery" />
+            </div>
+
+            <button type="submit" class="btn-brand-order">COMPLETE ORDER</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+// ======================================================================
+// Cart functionality globally
+// ======================================================================
+
+// 1. Toast Notification Function (Success message display karne ke liye)
+// function showToast(message) {
+//   let toast = document.getElementById('toast');
+//   if (!toast) {
+//     toast = document.createElement('div');
+//     toast.id = 'toast';
+//     toast.className = 'toast';
+//     // Inline styling taake alag se CSS na dhoondni pade
+//     toast.style.cssText = "position:fixed; z-index:9999; bottom:30px; left:50%; transform:translate(-50%, 40px); padding:12px 24px; background:#526b58; color:#fffdf8; border-radius:30px; box-shadow:0 10px 30px rgba(0,0,0,0.15); font-size:13px; font-weight:500; opacity:0; pointer-events:none; transition:opacity 0.3s ease, transform 0.3s ease; text-align:center;";
+//     document.body.appendChild(toast);
+//   }
+//   toast.textContent = message;
+//   toast.style.opacity = '1';
+//   toast.style.transform = 'translate(-50%, 0)';
+//   setTimeout(() => {
+//     toast.style.opacity = '0';
+//     toast.style.transform = 'translate(-50%, 40px)';
+//   }, 2500);
+// }
+
+// 2. Universal "Add to Bag" Handler (Har page par click fetch karega)
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.add-to-bag-btn') || e.target.closest('.add-to-bag');
+  if (!btn) return;
+
+  e.preventDefault();
+
+  const productCard = btn.closest('.product-card') || btn.closest('.product-item') || btn.parentElement;
+
+  // Image safely fetch karne ke liye
+  let imageSrc = '';
+  const imgEl = productCard ? productCard.querySelector('img') : null;
+  if (imgEl) {
+    imageSrc = imgEl.getAttribute('src') || imgEl.getAttribute('data-src') || '';
+  }
+  if (!imageSrc || imageSrc.includes('placeholder')) {
+    imageSrc = btn.dataset.image || '/static/assets/images/Home page/logo.png';
+  }
+
+  const product = {
+    id: btn.dataset.id || ('prod_' + Math.random().toString(36).substr(2, 9)),
+    name: btn.dataset.name || (productCard && productCard.querySelector('h3, .product-title') ? productCard.querySelector('h3, .product-title').innerText.trim() : 'Artisan Product'),
+    price: Number(btn.dataset.price || (productCard && productCard.querySelector('.price, .product-price') ? productCard.querySelector('.price, .product-price').innerText.replace(/[^0-9]/g, '') : 8900)),
+    image: imageSrc,
+    quantity: 1,
+    selected: true
+  };
+
+  let cart = (typeof CartManager !== 'undefined' && CartManager.getCart) 
+    ? CartManager.getCart() 
+    : JSON.parse(localStorage.getItem('anahat_cart') || '[]');
+
+  const existing = cart.find(item => String(item.id) === String(product.id));
+  if (existing) {
+    existing.quantity = (Number(existing.quantity) || 1) + 1;
+  } else {
+    cart.push(product);
+  }
+
+  // Cart save aur badge update karein
+  if (typeof CartManager !== 'undefined' && CartManager.saveCart) {
+    CartManager.saveCart(cart);
+  } else {
+    localStorage.setItem('anahat_cart', JSON.stringify(cart));
+  }
+
+  updateCartHeaderBadge(cart);
+  
+  // Success Message Show Karein ✨
+  showToast(' Successfully added to bag!');
+
+  // Agar mini-drawer open karna ho
+  if (typeof window.openDrawer === 'function') {
+    window.openDrawer();
+  }
+});
+
+// 3. Main Checkout Component Render Function
+function renderCheckoutComponent() {
+  const cart = (typeof CartManager !== 'undefined' && CartManager.getCart) 
+    ? CartManager.getCart() 
+    : JSON.parse(localStorage.getItem('anahat_cart') || '[]');
+    
+    
+  const listEl = document.getElementById('cartList');
+  const totalEl = document.getElementById('cartSubtotal');
+
+  // Cart Badge Update Karein (Har Page Par Header Bag Count Sahi Karega)
+  updateCartHeaderBadge(cart);
+
+  if (!listEl || !totalEl) return;
+
+  if (!cart || cart.length === 0) {
+    listEl.innerHTML = '<p style="color:#666; font-size:13px; padding:20px 0; text-align:center;">Your shopping bag is empty.</p>';
+    totalEl.textContent = 'Rs. 0';
+    return;
+  }
+
+  let subtotal = 0;
+  
+  // Sabhi items selected hain ya nahi check karein
+  const allSelected = cart.every(item => item.selected !== false);
+
+  // Select All Checkbox Layout
+  let htmlContent = `
+    <div style="display:flex; align-items:center; gap:8px; padding-bottom:12px; margin-bottom:16px; border-bottom:1px solid #deded1;">
+      <input type="checkbox" id="selectAllCart" onchange="toggleSelectAllCart(this.checked)" ${allSelected ? 'checked' : ''} style="cursor:pointer;">
+      <label for="selectAllCart" style="font-size:12px; font-weight:600; cursor:pointer;">Select All Items</label>
+    </div>
+    
+  `;
+
+  // Items Rendering with Checkbox, Remove Button & Image Fetching
+  htmlContent += cart.map(item => {
+    const isSelected = item.selected !== false; 
+    const itemName = item.name || item.title || 'Artisan Product';
+    const itemPrice = Number(item.price) || 0;
+    const itemQty = Number(item.quantity) || 1;
+const itemImage = item.image || item.mainImage || item.img || '/static/assets/images/Home page/logo.png';    
+    // Fixed multiplication syntax (*)
+    const itemTotal = itemPrice * itemQty;
+    
+    
+    if (isSelected) {
+      subtotal += itemTotal;
+    }
+
+    return `
+      <div class="cart-item" style="display:flex; align-items:center; gap:12px; margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid #deded1; opacity: ${isSelected ? '1' : '0.5'};">
+        
+        <!-- Individual Selection Checkbox -->
+        <input type="checkbox" onchange="toggleItemSelection('${item.id}', this.checked)" ${isSelected ? 'checked' : ''} style="cursor:pointer;">
+
+        <img src="${itemImage}" alt="${itemName}" style="width:60px; height:75px; object-fit:cover; border-radius:4px;" onerror="this.src='/static/assets/images/Home page/logo.png'">
+        
+        <div style="flex:1;">
+          <strong style="font-size:13px; color:#252820; display:block; margin-bottom:3px;">${itemName}</strong>
+          ${item.size ? `<span style="display:inline-block; font-size:11px; background:#f0ede6; color:#526b58; padding:2px 8px; border-radius:4px; margin-bottom:4px; font-weight:600;">Size: ${item.size}</span><br>` : ''}
+          <span style="font-size:11px; color:#6c6e64; display:block; margin-bottom:4px;">Rs. ${itemPrice.toLocaleString()}</span>
+          
+          <!-- Remove Item Button -->
+          <button type="button" onclick="removeCartItem('${item.id}')" style="background:none; border:none; color:#d98b76; font-size:11px; cursor:pointer; padding:0; text-decoration:underline;">
+            Remove
+          </button>
+        </div>
+
+        <!-- Quantity Adjuster Buttons -->
+        <div style="display:flex; align-items:center; gap:5px;">
+          <button class="qty-btn" type="button" onclick="adjustQty('${item.id}', -1)" style="padding:2px 8px; cursor:pointer;">-</button>
+          <span style="font-size:12px; font-weight:bold;">${itemQty}</span>
+          <button class="qty-btn" type="button" onclick="adjustQty('${item.id}', 1)" style="padding:2px 8px; cursor:pointer;">+</button>
+        </div>
+
+        <strong style="font-size:12px; margin-left:10px;">Rs. ${itemTotal.toLocaleString()}</strong>
+      </div>
+    `;
+  }).join('');
+
+  listEl.innerHTML = htmlContent;
+  totalEl.textContent = `Rs. ${subtotal.toLocaleString()}`;
+}
+
+// ---------------- HELPER FUNCTIONS ----------------
+
+// Helper 1: Header Badge Count Update
+function updateCartHeaderBadge(cart) {
+  const badge = document.getElementById('headerCartCount');
+  if (badge) {
+    const totalCount = cart.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
+    badge.textContent = totalCount;
+    badge.style.display = totalCount > 0 ? 'flex' : 'none';
+  }
+}
+
+// Helper 2: Save & Re-render Cart
+function saveCartState(cart) {
+  if (typeof CartManager !== 'undefined' && CartManager.saveCart) {
+    CartManager.saveCart(cart);
+  } else {
+    localStorage.setItem('anahat_cart', JSON.stringify(cart));
+  }
+  updateCartHeaderBadge(cart);
+  if (typeof renderCheckoutComponent === 'function') {
+    renderCheckoutComponent();
+    
+  }
+}
+
+// Helper 3: Quantity Adjust (- / +)
+function adjustQty(id, delta) {
+  let cart = (typeof CartManager !== 'undefined' && CartManager.getCart) ? CartManager.getCart() : JSON.parse(localStorage.getItem('anahat_cart') || '[]');
+  const item = cart.find(i => String(i.id) === String(id));
+  if (item) {
+    item.quantity = (Number(item.quantity) || 1) + delta;
+    if (item.quantity <= 0) {
+      cart = cart.filter(i => String(i.id) !== String(id));
+    }
+    saveCartState(cart);
+  }
+}
+
+// Helper 4: Single Item Selection Toggle
+function toggleItemSelection(id, checked) {
+  let cart = (typeof CartManager !== 'undefined' && CartManager.getCart) ? CartManager.getCart() : JSON.parse(localStorage.getItem('anahat_cart') || '[]');
+  const item = cart.find(i => String(i.id) === String(id));
+  if (item) {
+    item.selected = checked;
+    saveCartState(cart);
+  }
+}
+
+// Helper 5: Select All / Deselect All Toggle
+function toggleSelectAllCart(checked) {
+  let cart = (typeof CartManager !== 'undefined' && CartManager.getCart) ? CartManager.getCart() : JSON.parse(localStorage.getItem('anahat_cart') || '[]');
+  cart.forEach(item => { item.selected = checked; });
+  saveCartState(cart);
+}
+
+// Helper 6: Single Item Remove Function
+function removeCartItem(id) {
+  let cart = (typeof CartManager !== 'undefined' && CartManager.getCart) ? CartManager.getCart() : JSON.parse(localStorage.getItem('anahat_cart') || '[]');
+  cart = cart.filter(i => String(i.id) !== String(id));
+  saveCartState(cart);
+}
+
+
+// Page Load par component execute karein
+document.addEventListener('DOMContentLoaded', () => {
+  const cart = (typeof CartManager !== 'undefined' && CartManager.getCart) ? CartManager.getCart() : JSON.parse(localStorage.getItem('anahat_cart') || '[]');
+  updateCartHeaderBadge(cart);
+  renderCheckoutComponent();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    // Clear individual error messages on input typing
+    ['cFirstName', 'cLastName', 'cWhatsApp', 'cSimPhone', 'cCity', 'cAddress'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', () => {
+          el.style.borderColor = '#deded1';
+          const errEl = document.getElementById('err-' + id);
+          if (errEl) errEl.style.display = 'none';
+        });
+      }
+    });
+
+    document.getElementById('orderForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const cart = (typeof CartManager !== 'undefined' && CartManager.getCart) ? CartManager.getCart() : JSON.parse(localStorage.getItem('anahat_cart') || '[]');
+      
+      if (!cart || cart.length === 0) {
+        alert('Please add items to your bag before proceeding.');
+        return;
+      }
+
+      // Fields validation check
+      const fields = [
+        { id: 'cFirstName', val: document.getElementById('cFirstName').value.trim() },
+        { id: 'cLastName', val: document.getElementById('cLastName').value.trim() },
+        { id: 'cWhatsApp', val: document.getElementById('cWhatsApp').value.trim() },
+        { id: 'cSimPhone', val: document.getElementById('cSimPhone').value.trim() },
+        { id: 'cCity', val: document.getElementById('cCity').value.trim() },
+        { id: 'cAddress', val: document.getElementById('cAddress').value.trim() }
+      ];
+
+      let isValid = true;
+
+      fields.forEach(f => {
+        const inputEl = document.getElementById(f.id);
+        const errEl = document.getElementById('err-' + f.id);
+        if (!f.val) {
+          isValid = false;
+          inputEl.style.borderColor = '#b33939';
+          if (errEl) errEl.style.display = 'block';
+        } else {
+          inputEl.style.borderColor = '#deded1';
+          if (errEl) errEl.style.display = 'none';
+        }
+      });
+
+      if (!isValid) {
+        return; // Stops here, no scrolling, displays inline error text right under empty fields
+      }
+
+      const firstName = fields[0].val;
+      const lastName = fields[1].val;
+      const whatsapp = fields[2].val;
+      const simPhone = fields[3].val;
+      const city = fields[4].val;
+      const postalCode = document.getElementById('cPostalCode').value.trim();
+      const address = fields[5].val;
+      const landmark = document.getElementById('cLandmark').value.trim();
+      const notes = document.getElementById('cNotes').value.trim();
+
+      let msg = `*NEW ORDER - ANAHAT BY KANWAL* 🛍️\n\n`;
+      msg += `👤 *Customer Name:* ${firstName} ${lastName}\n`;
+      msg += `💬 *WhatsApp Number:* ${whatsapp}\n`;
+      msg += `📞 *SIM / Call Number:* ${simPhone}\n`;
+      msg += `🏙️ *City:* ${city}${postalCode ? ` (${postalCode})` : ''}\n`;
+      msg += `📍 *Address:* ${address}\n`;
+      if (landmark) msg += `🏛️ *Landmark:* ${landmark}\n`;
+      msg += `💳 *Payment Method:* Cash on Delivery (COD)\n`;
+      if (notes) msg += `📝 *Note:* ${notes}\n`;
+      
+      msg += `\n*ORDER ITEMS:*\n`;
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        const itemSub = item.price * item.quantity;
+        total += itemSub;
+msg += `${index + 1}. ${item.title || item.name || item.productName} (Qty: ${item.quantity}) - Rs. ${itemSub.toLocaleString()}\n`;      });
+
+      msg += `\n💵 *TOTAL AMOUNT:* Rs. ${total.toLocaleString()}`;
+
+      // Official WhatsApp Number
+      const whatsappNum = "923274518801"; 
+      window.open(`https://wa.me/${whatsappNum}?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+
+    window.addEventListener('DOMContentLoaded', renderCheckoutComponent);
+  </script>
+    <!-- Global Component Loader & Global Cart State -->
+  <script src="/static/global.js"></script>
+
+  <!-- Central Catalog & Routing Script -->
+  <script src="/static/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

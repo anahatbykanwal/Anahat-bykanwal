@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Header Component</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet" />
+<script src="/static/script.js"></script>
+  <style>
+    :root {
+      --sage: #758b76;
+      --sage-dark: #526b58;
+      --sage-pale: #e4e9df;
+      --cream: #f8f5ed;
+      --paper: #fffdf8;
+      --ink: #252820;
+      --muted: #6c6e64;
+      --rose: #d98b76;
+      --gold: #bd9561;
+      --line: #deded1;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', Arial, sans-serif;
+      --shadow: 0 12px 35px rgba(47, 57, 43, .09);
+      --radius: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .announcement-bar {
+      height: 32px;
+      background: var(--sage);
+      color: #fffdf6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      font-size: 11px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .announcement-flower {
+      font-size: 13px;
+      color: #f1e7d3;
+    }
+
+    .site-header {
+      height: 78px;
+      padding: 0 clamp(10px, 2vw, 25px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      background: rgba(255, 253, 248, .96);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(117, 139, 118, .15);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .logo {
+      height: 80px;
+      width: 80px;
+      margin-right: -10px;
+    }
+
+    
+    .brand-wording {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1;
+    }
+
+    .brand-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      letter-spacing: .2em;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .brand-by {
+      font-size: 8px;
+      letter-spacing: .3em;
+      padding-top: 4px;
+      
+      margin-top: 4px;
+      color: var(--sage-dark);
+      font-weight: 600;
+      
+    }
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2.6vw, 38px);
+      margin-left: auto;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      color: #373a33;
+      position: relative;
+      padding: 9px 0;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--sage-dark);
+      transition: width .25s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-item.dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .dropdown-arrow {
+      font-size: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 210px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+      padding: 8px 0;
+      margin: 0;
+      list-style: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+      z-index: 100;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu,
+    .nav-item.dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-item.dropdown:hover .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-item {
+      display: block;
+      padding: 10px 18px;
+      font-size: 13px;
+      color: var(--ink);
+      border-bottom: 1px solid rgba(222, 222, 209, 0.4);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .dropdown-menu li:last-child .dropdown-item {
+      border-bottom: 0;
+    }
+
+    .dropdown-item:hover {
+      background: var(--sage-pale);
+      color: var(--sage-dark);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Inline Search Bar Container with Icon on the Right */
+    .header-search-container {
+      display: flex;
+      align-items: center;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 2px 4px 2px 10px;
+      gap: 6px;
+    }
+
+    .header-search-container input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 12px;
+      padding: 6px 0;
+      width: 140px;
+      color: var(--ink);
+    }
+
+    .header-search-container button {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 8px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .header-search-container button:hover {
+      background: var(--sage-pale);
+      color: var(--sage-dark);
+    }
+
+    .icon-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 0;
+      background: transparent;
+      color: #353a35;
+      padding: 3px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .icon-button:hover {
+      background-color: var(--sage-pale);
+    }
+
+    .icon-button svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .count-badge {
+      position: absolute;
+      right: -2px;
+      top: -2px;
+      min-width: 16px;
+      height: 16px;
+      padding: 0 4px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      background: var(--sage-dark);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .icon-button .fa-solid { font-size: 16px; }
+
+    /* By default desktop aur closed menu mein social icons hide rahenge */
+.menu-socials {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  /* Jab mobile menu active (.active) ho ga tabhi social icons show honge */
+  .main-nav.active .menu-socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px 10px;
+    margin-top: 5px;
+    border-top: 1px solid rgba(222, 222, 209, 0.6);
+    width: 100%;
+  }
+
+  .main-nav.active .menu-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--sage-pale, #e4e9df);
+    color: var(--sage-dark, #526b58);
+    font-size: 14px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .main-nav.active .menu-socials a:hover {
+    background: var(--sage-dark);
+    color: #fff;
+  }
+}
+/* --- DESKTOP STYLING FIXES --- */
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--sage-dark, #526b58);
+  padding: 4px;
+}
+
+/* --- MOBILE RESPONSIVE STYLING (max-width: 760px) --- */
+@media (max-width: 760px) {
+  .site-header {
+    height: 64px !important; /* Fixed compact height for mobile */
+    padding: 0 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important; /* Forces all elements in a SINGLE ROW */
+    gap: 6px !important;
+    position: relative !important;
+  }
+
+  /* 1. Left: Hamburger Button */
+  .hamburger-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  /* 2. Center/Left: Brand Logo & Wording */
+  .brand {
+    order: 2;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .logo {
+    height: 46px !important;
+    width: 46px !important;
+    margin-right: -4px !important;
+  }
+
+  .brand-name {
+    font-size: 14px !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .brand-by {
+    font-size: 6px !important;
+    letter-spacing: 0.18em !important;
+    margin-top: 1px !important;
+  }
+
+  /* 3. Right: Search & Cart Container */
+  .header-actions {
+    order: 3;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-shrink: 0;
+  }
+
+  .header-search-container {
+    padding: 2px 4px !important;
+    max-width: 110px;
+  }
+
+  .header-search-container input {
+    width: 70px !important; /* Fits perfectly inside 393px screen */
+    font-size: 11px !important;
+    padding: 4px 0 !important;
+  }
+
+  .icon-button {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  /* 4. Dropdown Navigation (Positioned absolutely so it doesn't break header height) */
+  .main-nav {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: var(--paper, #fffdf8) !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 10px 0 !important;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1) !important;
+    border-top: 1px solid var(--line, #deded1) !important;
+    margin-left: 0 !important;
+    z-index: 1000 !important;
+  }
+
+  .main-nav.active {
+    display: flex !important;
+  }
+
+  .main-nav .nav-link {
+    padding: 12px 24px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(222, 222, 209, 0.3);
+  }
+
+  .main-nav .nav-item.dropdown {
+    width: 100%;
+  }
+
+  .main-nav .dropdown-menu {
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: var(--sage-pale, #e4e9df) !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .main-nav .dropdown-item {
+    padding: 10px 34px !important;
+  }
+}@media (max-width: 760px) { 
+  .site-header { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    gap: 8px; 
+  } 
+
+  /* Wrap navigation links nicely underneath or compact them so they don't overflow */
+  .site-header nav, 
+  .header-nav {
+    order: 3;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+    font-size: 12px;
+  }
+
+  .header-search-container input { 
+    width: 100px; /* Adjusted width so search bar fits nicely with cart icon */
+  }
+}
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="announcement-flower" aria-hidden="true">✿</span>
+    <p>Curated Artisan Collections — Free Shipping across PK over Rs. 5,000</p>
+    <span class="announcement-flower" aria-hidden="true">✿</span>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="site-header">
+    
+    <!-- Left: Hamburger Button -->
+    <button class="hamburger-btn" id="hamburgerToggle" aria-label="Toggle Menu">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+
+    <!-- Brand Logo -->
+    <a href="index.html" class="brand">
+      <img src="/static/assets/images/Home page/logo.png" alt="Anahat Logo" class="logo" />
+      <span class="brand-wording">
+        <span class="brand-name">ANAHAT</span>
+        <span class="brand-by">BY KANWAL</span>
+      </span>
+    </a>
+
+    <!-- Navigation Links with ID for Hamburger Toggle -->
+    <nav class="main-nav" id="headerNav">
+      <a class="nav-link" href="/index.html">Home</a>
+
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="/pages/Collections/collectionproduct.html">
+          Collections <span class="dropdown-arrow">▾</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item"
+              href="/pages/Collections/collectionproduct.html?category=Dresses">Dresses</a></li>
+          <li><a class="dropdown-item"
+              href="/pages/Collections/collectionproduct.html?category=Tops+%26+Blouses">Tops &amp;
+              Blouses</a></li>
+          <li><a class="dropdown-item"
+              href="/pages/Collections/collectionproduct.html?category=Hijabs+%26+Stoles">Hijabs &amp;
+              Stoles</a></li>
+          <li><a class="dropdown-item"
+              href="/pages/Collections/collectionproduct.html?category=Abayas">Abayas</a></li>
+          <li><a class="dropdown-item"
+              href="/pages/Collections/collectionproduct.html?category=Art+%26+Craft">Art &amp; Craft</a>
+          </li>
+          <li><a class="dropdown-item"
+              href="/pages/Collections/collectionproduct.html?category=Calligraphy+%26+Decor">Calligraphy
+              &amp; Decor</a></li>
+        </ul>
+      </div>
+
+      <a class="nav-link" href="/pages/Services/services.html">Services</a>
+      <a class="nav-link" href="/pages/Contact/contact.html">Contact</a>
+      <div class="menu-socials">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://snapchat.com" target="_blank" aria-label="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+      </div>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Inline Search Bar -->
+      <div class="header-search-container">
+        <input type="text" name="search" id="headerSearchInput" placeholder="Search products..." autocomplete="off" />
+        <button type="button" id="headerSearchBtn" aria-label="Submit Search">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Cart Button -->
+      <button class="icon-button" aria-label="Shopping Bag">
+        <a href="/pages/checkouts/checkout.html">
+          <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+        </a>
+        <span class="count-badge" id="headerCartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+<script src="/static/script.js"></script>
+<script src="/static/global.js"></script>
+  
+</body>
+
+</html>

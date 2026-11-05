@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#758b76" />
+  <meta name="description" content="Contact Anahat by Kanwal — Reach out for order inquiries, studio visits, WhatsApp assistance, or bespoke consultations." />
+  <title>Contact Us | Anahat by Kanwal</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --sage: #758b76;
+      --sage-dark: #526b58;
+      --sage-pale: #e8eee6;
+      --cream: #f8f5ed;
+      --paper: #fffdf8;
+      --ink: #252820;
+      --muted: #6c6e64;
+      --rose: #d98b76;
+      --gold: #bd9561;
+      --line: #deded1;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', Arial, sans-serif;
+      --shadow: 0 12px 35px rgba(47, 57, 43, .08);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.6; }
+    body.drawer-open { overflow: hidden; }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; color: inherit; }
+
+    /* Main Container Wrapper */
+    .main-wrapper { max-width: 1180px; margin: 40px auto 80px; padding: 0 24px; display: flex; flex-direction: column; gap: 70px; }
+
+    /* SECTION 1: HEADER & DROP US A LINE INFO */
+    .contact-header { text-align: center; max-width: 750px; margin: 0 auto; }
+    .contact-header h1 { font: 500 clamp(32px, 4.5vw, 44px) var(--serif); letter-spacing: 0.05em; color: var(--ink); margin-bottom: 6px; }
+    .contact-header .subtitle { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage-dark); font-weight: 700; margin-bottom: 16px; display: block; }
+    .contact-header p { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+
+    .contact-details-list { display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: var(--ink); }
+    .contact-details-list strong { font-weight: 700; color: var(--sage-dark); text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; }
+    .contact-social-links { margin-top: 10px; font-size: 13px; }
+    .contact-social-links a { color: var(--sage-dark); font-weight: 600; text-decoration: underline; }
+
+    /* SECTION 2: PLAN A VISIT ACCENT BANNER */
+    .plan-visit-section { position: relative; display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; align-items: center; margin-top: 10px; }
+    .visit-img-wrap { border-radius: var(--radius-lg); overflow: hidden; height: 340px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .visit-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .visit-card-floating {
+      background: var(--paper); padding: 36px; border-radius: var(--radius-lg); border: 1px solid var(--line); box-shadow: 0 16px 40px rgba(0,0,0,0.07); position: relative;
+    }
+    .visit-card-floating h2 { font: 500 30px var(--serif); margin-bottom: 12px; color: var(--ink); }
+    .visit-card-floating p { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+    .visit-card-floating .visit-btn {
+      display: inline-block; padding: 12px 24px; border: 1px solid var(--ink); border-radius: var(--radius-md); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s ease;
+    }
+    .visit-card-floating .visit-btn:hover { background: var(--sage); color: white; border-color: var(--sage); }
+
+    /* SECTION 3: SPLIT FORM WITH IMAGE & MAP OVERLAY */
+    .contact-form-section {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; background: var(--paper); border-radius: var(--radius-lg); border: 1px solid var(--line); box-shadow: var(--shadow); overflow: hidden; padding: 36px;
+    }
+
+    .form-visual-side { position: relative; border-radius: var(--radius-md); overflow: hidden; min-height: 420px; border: 1px solid var(--line); }
+    .form-visual-side img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .map-overlay-card {
+      position: absolute; bottom: 16px; left: 16px; right: 16px; background: rgba(255, 253, 248, 0.95); backdrop-filter: blur(8px); padding: 14px 18px; border-radius: var(--radius-md); border: 1px solid var(--line); display: flex; align-items: center; gap: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .map-overlay-card .map-icon { font-size: 24px; color: var(--sage-dark); }
+    .map-overlay-card .map-text h4 { font-size: 12px; font-weight: 700; color: var(--ink); }
+    .map-overlay-card .map-text p { font-size: 11px; color: var(--muted); margin: 0; }
+
+    .form-fields-side { display: flex; flex-direction: column; justify-content: center; }
+    .form-fields-side .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage-dark); margin-bottom: 4px; display: block; }
+    .form-fields-side h2 { font: 500 28px var(--serif); margin-bottom: 8px; color: var(--ink); }
+    .form-fields-side p { font-size: 12px; color: var(--muted); margin-bottom: 24px; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink); }
+    .form-group input, .form-group textarea {
+      padding: 11px 14px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #ffffff; font-size: 13px; outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--sage); }
+
+    .send-btn {
+      padding: 14px; background: var(--ink); color: white; border-radius: var(--radius-md); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border: none; cursor: pointer; transition: background 0.2s, transform 0.2s; margin-top: 6px;
+    }
+    .send-btn:hover { background: var(--sage-dark); transform: translateY(-2px); }
+
+    /* SECTION 4: QUICK CONNECT CARDS STRIP */
+    .quick-connect-section { text-align: center; }
+    .quick-connect-section h2 { font: 500 30px var(--serif); margin-bottom: 24px; color: var(--ink); }
+
+    .connect-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .connect-card {
+      background: var(--paper); padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--line); display: flex; align-items: center; gap: 16px; text-align: left; box-shadow: var(--shadow); transition: transform 0.2s ease;
+    }
+    .connect-card:hover { transform: translateY(-3px); }
+    .connect-icon-circle {
+      width: 44px; height: 44px; border-radius: 50%; background: var(--sage-pale); color: var(--sage-dark); display: grid; place-items: center; font-size: 18px; flex-shrink: 0;
+    }
+    .connect-card h4 { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+    .connect-card p { font-size: 11px; color: var(--muted); margin: 0; }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed; z-index: 100; bottom: 24px; left: 50%; transform: translate(-50%, 30px); padding: 12px 24px; background: #2e3e31; color: white; border-radius: 30px; box-shadow: var(--shadow); font-size: 12px; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; text-align: center;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 992px) {
+      .contact-form-section, .plan-visit-section, .connect-cards-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Dynamic Header Placeholder -->
+  <div id="header-placeholder"></div>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+
+    <!-- SECTION 1: CENTERED CONTACT HEADER & DETAILS -->
+    <section class="contact-header">
+      <span class="subtitle">Drop Us A Line</span>
+      <h1>CONTACT US</h1>
+      <p>We’re happy to answer any questions you have regarding our silk dresses, stoles, abayas, or bespoke calligraphy commissions. Just send us a message in the form below.</p>
+      
+      <div class="contact-details-list">
+        <div><strong>UAN:</strong> 033 111 111 42</div>
+        <div>
+          <strong>For WhatsApp Queries:</strong> 
+          <strong><a href="https://wa.me/923274518801" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">
+            0327 4518801
+          </a></strong>
+        </div>
+        <div>Markaz E Islami Road Near White Palace Marriage Hall, GT Road, Pindi bypass, Gujranwala, 52250</div>
+        <div class="contact-social-links">
+          Follow Us: 
+          Instagram: <a href="https://instagram.com" target="_blank">@anahatbykanwal</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: PLAN A VISIT ACCENT BANNER -->
+    <section class="plan-visit-section">
+      <div class="visit-card-floating">
+        <h2>Plan A Studio Visit</h2>
+        <p>Experience our pure silk textures, hand-embroidered details, and gold leaf calligraphy pieces in person at our flagship studio. Book an exclusive appointment for personal bridal or wardrobe styling.</p>
+        <a href="tel:+923274518801" class="visit-btn">Book An Appointment →</a>
+      </div>
+      <div class="visit-img-wrap">
+        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80" alt="Anahat Studio Visit" />
+      </div>
+    </section>
+
+    <!-- SECTION 3: SPLIT FORM WITH IMAGE & MAP OVERLAY -->
+    <section class="contact-form-section">
+      <div class="form-visual-side">
+        <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80" alt="Anahat Studio Interior" />
+        
+        <div class="map-overlay-card">
+          <div class="map-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
+          <div class="map-text">
+            <h4>Anahat Studio - Gujranwala</h4>
+            <p>GT Road Near White Palace, Pindi Bypass</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-fields-side">
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Don't Hesitate To Contact Us, Send Your Message</h2>
+        <p>Fill out the form below and our team will get back to you within 24 hours.</p>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" id="contactName" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" id="contactPhone" placeholder="Phone Number" required />
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="contactEmail" placeholder="Your Email Address" required />
+          </div>
+
+          <div class="form-group">
+            <label>Message</label>
+            <textarea id="contactMessage" rows="4" placeholder="How can we help you?" required></textarea>
+          </div>
+
+          <button type="submit" class="send-btn">Send Message →</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SECTION 4: QUICK CONNECT CARDS STRIP -->
+    <section class="quick-connect-section">
+      <h2>Let's Connect With Anahat</h2>
+      <div class="connect-cards-grid">
+        <div class="connect-card">
+          <div class="connect-icon-circle"><i class="fa-solid fa-phone" aria-hidden="true"></i></div>
+          <div>
+            <h4><a href="tel:+923274518801">(+92) 327 4518801</a></h4>
+            <p>Mon - Sat: 10:00 AM - 8:00 PM</p>
+          </div>
+        </div>
+
+        <div class="connect-card">
+          <div class="connect-icon-circle"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
+          <div>
+            <h4><a href="mailto:anahatbykanwal@gmail.com">anahatbykanwal@gmail.com</a></h4>
+            <p>Online support 24/7</p>
+          </div>
+        </div>
+
+        <div class="connect-card">
+          <div class="connect-icon-circle"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
+          <div>
+            <h4><a href="https://www.google.com/maps/search/?api=1&query=Gujranwala+Lahore+Pakistan" target="_blank" rel="noopener noreferrer">Gujranwala &amp; Lahore, PK</a></h4>
+            <p>Visit our flagship studio</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Dynamic Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Toast Notification Element -->
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- Central JavaScript File (Ensure path matches your directory: static/global.js or static/js/global.js) -->
+<!-- At the bottom of body tag in contact.html -->
+<script src="/static/global.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+      contactForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        // Input fields se values uthana
+        const name = document.getElementById("contactName").value.trim();
+        const phone = document.getElementById("contactPhone").value.trim();
+        const email = document.getElementById("contactEmail").value.trim();
+        const message = document.getElementById("contactMessage").value.trim();
+        
+        // WhatsApp message format banana
+        const whatsappNumber = "923274518801"; // Aapka WhatsApp number
+        const text = `*New Contact Inquiry - Anahat by Kanwal*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Email:* ${encodeURIComponent(email)}%0A*Message:* ${encodeURIComponent(message)}`;
+        
+        // Success Toast Show karna
+        const toast = document.getElementById("toast");
+        if (toast) {
+          toast.textContent = "✨ Redirecting to WhatsApp with your message!";
+          toast.classList.add("show");
+          setTimeout(() => {
+            toast.classList.remove("show");
+          }, 3000);
+        }
+        
+        // 1 second baad WhatsApp open karna
+        setTimeout(() => {
+          window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
+        }, 1000);
+      });
+    }
+  });
+</script>
+</body>
+</html>
