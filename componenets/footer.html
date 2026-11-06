@@ -35,7 +35,7 @@
     
     .site-footer {
       background: #f6f3ea;
-      padding: 40px clamp(20px, 5.5vw, 82px) 0;
+      padding: 40px clamp(15px, 2.5vw, 40px) 0; /* <-- Reduced left/right padding here */
       border-top: 1px solid var(--line);
       text-align: left;
     }
@@ -45,6 +45,7 @@
       grid-template-columns: 1.25fr .9fr .9fr .9fr 1.35fr;
       gap: 28px;
       padding-bottom: 20px;
+      align-items: start; /* <-- Add this line to force all columns to the top */
     }
 
     .footer-brand {
@@ -153,7 +154,6 @@
       }
     }
 
-    /* Pehla column (Logo, Brand Name, Tagline aur Social Icons) ko center karne ke liye */
 
 
     /* Generic footer column alignment agar pehla column target karna ho */
@@ -169,12 +169,7 @@
       display: flex;
       justify-content: center;
       gap: 10px;
-    }
-
-    /* Collections wale frame/column ko thoda neeche shift karne ke liye margin-top de sakte hain */
-    .footer-main > div:nth-child(2) {
-      margin-top: 25px; /* Is se collections wala section thoda neeche ho jaye ga */
-    }
+    }    
 
     .footer-newsletter p { 
       color: #66695f; 
