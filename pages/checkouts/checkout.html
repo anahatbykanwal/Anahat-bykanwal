@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -333,6 +333,15 @@
   }
 }
   </style>
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Anahat by Kanwal | Reveal Your Inner Beauty" />
+    <meta property="og:description" content="Handcrafted apparel, party wear dresses, embellished western shirts, abayas, hand-painted stoles, calligraphy, resin art, and lotus flower decor." />
+    <meta property="og:image" content="/static/assets/images/Home page/Hero.jpg" />
+    <!-- Extended On-Page SEO & Canonical Tags -->
+    <link rel="canonical" href="https://anahatbykanwal.com/" />
+    <link rel="icon" type="image/x-icon" href="/static/assets/images/favicon.ico" />
+    <meta name="author" content="Anahat by Kanwal" />
 </head>
 <body>
 
@@ -340,12 +349,12 @@
   <div id="header-placeholder"></div>
 
   <div class="checkout-wrapper">
-    <a href="javascript:history.back()" style="text-decoration:none; color:var(--sage-dark,#526b58); font-weight:bold; font-size:12px; display:inline-block; margin-bottom:10px;">← Continue Shopping</a>
+    <a href="javascript:history.back()" style="text-decoration:none; color:var(--sage-dark,#526b58); font-weight:bold; font-size:12px; display:inline-block; margin-bottom:10px;">â† Continue Shopping</a>
     
     <!-- Support & Direct Call Banner -->
     <div class="support-banner">
       <span>Need assistance before ordering?</span>
-      <span>📞 Direct SIM Call: <a href="tel:03274518801">0327-4518801</a></span>
+      <span>ðŸ“ž Direct SIM Call: <a href="tel:03274518801">0327-4518801</a></span>
     </div>
 
     <div class="checkout-card">
@@ -512,7 +521,7 @@ document.addEventListener('click', function(e) {
 
   updateCartHeaderBadge(cart);
   
-  // Success Message Show Karein ✨
+  // Success Message Show Karein âœ¨
   showToast(' Successfully added to bag!');
 
   // Agar mini-drawer open karna ho
@@ -752,15 +761,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const landmark = document.getElementById('cLandmark').value.trim();
       const notes = document.getElementById('cNotes').value.trim();
 
-      let msg = `*NEW ORDER - ANAHAT BY KANWAL* 🛍️\n\n`;
-      msg += `👤 *Customer Name:* ${firstName} ${lastName}\n`;
-      msg += `💬 *WhatsApp Number:* ${whatsapp}\n`;
-      msg += `📞 *SIM / Call Number:* ${simPhone}\n`;
-      msg += `🏙️ *City:* ${city}${postalCode ? ` (${postalCode})` : ''}\n`;
-      msg += `📍 *Address:* ${address}\n`;
-      if (landmark) msg += `🏛️ *Landmark:* ${landmark}\n`;
-      msg += `💳 *Payment Method:* Cash on Delivery (COD)\n`;
-      if (notes) msg += `📝 *Note:* ${notes}\n`;
+      let msg = `*NEW ORDER - ANAHAT BY KANWAL* ðŸ›ï¸\n\n`;
+      msg += `ðŸ‘¤ *Customer Name:* ${firstName} ${lastName}\n`;
+      msg += `ðŸ’¬ *WhatsApp Number:* ${whatsapp}\n`;
+      msg += `ðŸ“ž *SIM / Call Number:* ${simPhone}\n`;
+      msg += `ðŸ™ï¸ *City:* ${city}${postalCode ? ` (${postalCode})` : ''}\n`;
+      msg += `ðŸ“ *Address:* ${address}\n`;
+      if (landmark) msg += `ðŸ›ï¸ *Landmark:* ${landmark}\n`;
+      msg += `ðŸ’³ *Payment Method:* Cash on Delivery (COD)\n`;
+      if (notes) msg += `ðŸ“ *Note:* ${notes}\n`;
       
       msg += `\n*ORDER ITEMS:*\n`;
 
@@ -770,7 +779,7 @@ document.addEventListener('DOMContentLoaded', () => {
         total += itemSub;
 msg += `${index + 1}. ${item.title || item.name || item.productName} (Qty: ${item.quantity}) - Rs. ${itemSub.toLocaleString()}\n`;      });
 
-      msg += `\n💵 *TOTAL AMOUNT:* Rs. ${total.toLocaleString()}`;
+      msg += `\nðŸ’µ *TOTAL AMOUNT:* Rs. ${total.toLocaleString()}`;
 
       // Official WhatsApp Number
       const whatsappNum = "923274518801"; 
@@ -786,6 +795,8 @@ msg += `${index + 1}. ${item.title || item.name || item.productName} (Qty: ${ite
   <script src="/static/script.js"></script>
 </body>
 </html>
+
+
 
 
 

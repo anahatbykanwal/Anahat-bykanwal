@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#758b76" />
-  <title>Artisan Collections | Embellished Shirts & Stoles – Anahat by Kanwal</title>
+  <title>Artisan Collections | Embellished Shirts & Stoles â€“ Anahat by Kanwal</title>
 <meta name="description" content="Explore our artisanal collection featuring hand-painted silk stoles, custom embellished western shirts, and handcrafted accessories made in Pakistan." />
 
   <!-- Google Fonts -->
@@ -290,6 +290,15 @@
 }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Anahat by Kanwal | Reveal Your Inner Beauty" />
+    <meta property="og:description" content="Handcrafted apparel, party wear dresses, embellished western shirts, abayas, hand-painted stoles, calligraphy, resin art, and lotus flower decor." />
+    <meta property="og:image" content="/static/assets/images/Home page/Hero.jpg" />
+    <!-- Extended On-Page SEO & Canonical Tags -->
+    <link rel="canonical" href="https://anahatbykanwal.com/" />
+    <link rel="icon" type="image/x-icon" href="/static/assets/images/favicon.ico" />
+    <meta name="author" content="Anahat by Kanwal" />
 </head>
 
 <body>
@@ -362,7 +371,7 @@
         </p>
       </div>
       <div>
-        <a href="#shop" class="button button-primary">Explore Gallery <span>→</span></a>
+        <a href="#shop" class="button button-primary">Explore Gallery <span>â†’</span></a>
       </div>
     </section>
   </main>
@@ -490,7 +499,7 @@ function generateProductGridHTML(products) {
             <i class="fa-solid fa-bag-shopping"></i> Add to Bag
           </button>
           <button type="button" class="btn-card btn-buy-now" onclick="handleCardBuyNow('${product.id}')">
-            Buy Now →
+            Buy Now â†’
           </button>
         </div>
       </div>
@@ -535,7 +544,7 @@ function initProductDetailPage() {
 
   appContainer.innerHTML = `
     <div class="product-detail-wrapper" style="max-width: 1180px; margin: 30px auto; padding: 0 24px;">
-      <a href="/pages/Collections/collectionproduct.html" class="back-link" style="display:inline-block; font-size:11px; font-weight:700; text-transform:uppercase; color:var(--sage-dark); margin-bottom:20px;">← Back to Collections</a>
+      <a href="/pages/Collections/collectionproduct.html" class="back-link" style="display:inline-block; font-size:11px; font-weight:700; text-transform:uppercase; color:var(--sage-dark); margin-bottom:20px;">â† Back to Collections</a>
       
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; background: var(--paper); padding: 40px; border-radius: 16px; border: 1px solid var(--line);">
         
@@ -568,7 +577,7 @@ function initProductDetailPage() {
           <div style="margin-bottom: 24px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
               <span style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Select Size:</span>
-              <button type="button" onclick="openSizeGuideModal()" style="font-size: 11px; color: var(--sage-dark); text-decoration: underline; background: none; border: none; cursor: pointer;">Size Guide 📏</button>
+              <button type="button" onclick="openSizeGuideModal()" style="font-size: 11px; color: var(--sage-dark); text-decoration: underline; background: none; border: none; cursor: pointer;">Size Guide ðŸ“</button>
             </div>
             <div style="display: flex; gap: 10px;">
               ${product.sizes
@@ -594,7 +603,7 @@ function initProductDetailPage() {
           <!-- Dual Action Buttons -->
           <div style="display: flex; gap: 14px;">
             <button type="button" class="button button-outline" onclick="submitDetailAddBag('${product.id}')" style="flex: 1;">Add to Bag</button>
-            <button type="button" class="button button-primary" onclick="submitDetailBuyNow('${product.id}')" style="flex: 1;">Buy Now →</button>
+            <button type="button" class="button button-primary" onclick="submitDetailBuyNow('${product.id}')" style="flex: 1;">Buy Now â†’</button>
           </div>
         </div>
       </div>
@@ -675,7 +684,7 @@ function generateProductGridHTML(products) {
             <i class="fa-solid fa-bag-shopping"></i> Add to Bag
           </button>
           <button type="button" class="btn-card btn-buy-now" onclick="handleCardBuyNow('${product.id}')">
-            Buy Now →
+            Buy Now â†’
           </button>
         </div>
       </div>
@@ -687,3 +696,4 @@ function generateProductGridHTML(products) {
 </script>
    
 </html>
+
