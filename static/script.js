@@ -274,7 +274,7 @@ function generateProductGridHTML(products) {
             <i class="fa-solid fa-bag-shopping"></i> Add to Bag
           </button>
           <button type="button" class="btn-card btn-buy-now" onclick="handleCardBuyNow('${product.id}')">
-            Buy Now →
+            Buy Now 
           </button>
         </div>
       </div>

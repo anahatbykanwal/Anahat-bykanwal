@@ -53,8 +53,6 @@
       overflow-x: hidden;
     }
 
-   
-
     /* Page Hero Banner */
     .policy-hero {
       background: linear-gradient(135deg, #f2eee3 0%, #e8dfcf 100%);
@@ -118,7 +116,7 @@
     }
 
     .highlight-icon {
-      font-size: 26px;
+      font-size: 22px;
       margin-bottom: 10px;
       color: var(--sage-dark);
     }
@@ -153,7 +151,12 @@
       border-bottom: 1px solid var(--line);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+    }
+
+    .policy-section h2 i {
+      color: var(--sage-dark);
+      font-size: 20px;
     }
 
     .policy-section p {
@@ -176,13 +179,12 @@
       color: #4a4d43;
     }
 
-    .policy-list li::before {
-      content: "âœ¦";
+    .policy-list li i.list-icon {
       position: absolute;
       left: 0;
-      top: 0;
+      top: 4px;
       color: var(--sage-dark);
-      font-size: 12px;
+      font-size: 11px;
     }
 
     /* Step-by-Step Exchange Flow */
@@ -242,6 +244,8 @@
       align-items: center;
       background: white;
       transition: background 0.2s;
+      border: none;
+      cursor: pointer;
     }
 
     .faq-question:hover {
@@ -249,7 +253,7 @@
     }
 
     .faq-icon {
-      font-size: 18px;
+      font-size: 14px;
       transition: transform 0.3s ease;
       color: var(--sage-dark);
     }
@@ -311,6 +315,7 @@
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      text-decoration: none;
       transition: transform 0.2s ease, background 0.2s ease;
     }
 
@@ -319,7 +324,7 @@
       background: white;
     }
 
-    /* Mini Drawer & Toast Notification */
+    /* Toast Notification */
     .toast {
       position: fixed;
       z-index: 100;
@@ -344,120 +349,6 @@
       transform: translate(-50%, 0);
     }
 
-    .mini-drawer {
-      position: fixed;
-      z-index: 80;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: min(420px, 100%);
-      background: var(--paper);
-      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
-      transform: translateX(105%);
-      transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-    }
-
-    .mini-drawer.open {
-      transform: translateX(0);
-    }
-
-    .drawer-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(30, 36, 29, 0.45);
-      backdrop-filter: blur(2px);
-      z-index: 75;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .3s;
-    }
-
-    .drawer-backdrop.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .drawer-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 16px;
-    }
-
-    .drawer-head h2 {
-      font: 500 24px var(--serif);
-      margin: 0;
-      color: var(--ink);
-    }
-
-    .drawer-content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px 0;
-    }
-
-    .drawer-empty {
-      color: var(--muted);
-      font-size: 14px;
-      text-align: center;
-      padding: 60px 10px;
-      font-family: var(--serif);
-    }
-
-    .drawer-footer {
-      border-top: 1px solid var(--line);
-      padding-top: 16px;
-    }
-
-    /* Footer */
-    .site-footer {
-      background: #f6f3ea;
-      padding: 40px clamp(20px, 5.5vw, 82px) 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .footer-main {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr 1fr 1.2fr;
-      gap: 28px;
-      padding-bottom: 30px;
-    }
-
-    .footer-column h3 {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
-      color: var(--ink);
-    }
-
-    .footer-column a, .footer-column p {
-      display: block;
-      font-size: 11px;
-      color: #66695e;
-      margin-bottom: 8px;
-    }
-
-    .footer-column a:hover {
-      color: var(--sage-dark);
-      text-decoration: underline;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid var(--line);
-      padding: 16px 0;
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      color: #77796e;
-      font-size: 11px;
-    }
-
     /* Mobile Responsiveness */
     @media (max-width: 1024px) {
       .policy-highlights {
@@ -466,32 +357,24 @@
       .steps-grid {
         grid-template-columns: 1fr;
       }
-      .footer-main {
-        grid-template-columns: repeat(3, 1fr);
-      }
     }
-
-   
 
     @media (max-width: 480px) {
       .policy-highlights {
         grid-template-columns: 1fr;
       }
-      .footer-main {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Anahat by Kanwal | Reveal Your Inner Beauty" />
-    <meta property="og:description" content="Handcrafted apparel, party wear dresses, embellished western shirts, abayas, hand-painted stoles, calligraphy, resin art, and lotus flower decor." />
-    <meta property="og:image" content="/static/assets/images/Home page/Hero.jpg" />
-    <!-- Extended On-Page SEO & Canonical Tags -->
-    <link rel="canonical" href="https://anahatbykanwal.com/" />
-    <link rel="icon" type="image/x-icon" href="/static/assets/images/favicon.ico" />
-    <meta name="author" content="Anahat by Kanwal" />
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Anahat by Kanwal | Reveal Your Inner Beauty" />
+  <meta property="og:description" content="Handcrafted apparel, party wear dresses, embellished western shirts, abayas, hand-painted stoles, calligraphy, resin art, and lotus flower decor." />
+  <meta property="og:image" content="/static/assets/images/Home page/Hero.jpg" />
+  <!-- Extended On-Page SEO & Canonical Tags -->
+  <link rel="canonical" href="https://anahatbykanwal.com/" />
+  <link rel="icon" type="image/x-icon" href="/static/assets/images/favicon.ico" />
+  <meta name="author" content="Anahat by Kanwal" />
 </head>
 
 <body>
@@ -511,22 +394,22 @@
       <!-- Feature Highlight Cards -->
       <div class="policy-highlights">
         <div class="highlight-card">
-          <div class="highlight-icon">â±ï¸</div>
+          <div class="highlight-icon"><i class="fa-regular fa-clock"></i></div>
           <h3>7-Day Window</h3>
           <p>Exchange requests accepted within 7 days of delivery.</p>
         </div>
         <div class="highlight-card">
-          <div class="highlight-icon">ðŸšš</div>
+          <div class="highlight-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
           <h3>Free Exchange Pickup</h3>
           <p>Reverse pickup arranged for defective or damaged items.</p>
         </div>
         <div class="highlight-card">
-          <div class="highlight-icon">ðŸ’³</div>
+          <div class="highlight-icon"><i class="fa-solid fa-gift"></i></div>
           <h3>Store Credit</h3>
           <p>Receive flexible digital store vouchers for your next order.</p>
         </div>
         <div class="highlight-card">
-          <div class="highlight-icon">ðŸ“¦</div>
+          <div class="highlight-icon"><i class="fa-solid fa-truck-fast"></i></div>
           <h3>2-4 Day Shipping</h3>
           <p>Fast courier dispatch across all cities in Pakistan.</p>
         </div>
@@ -534,14 +417,14 @@
 
       <!-- 1. Exchange Policy -->
       <section class="policy-section">
-        <h2><span>ðŸŒ¿</span> Returns &amp; Exchange Policy</h2>
+        <h2><i class="fa-solid fa-arrows-rotate"></i> Returns &amp; Exchange Policy</h2>
         <p>At <strong>Anahat by Kanwal</strong>, your satisfaction is our utmost priority. If you receive a size that doesn't fit or an item that differs from your expectations, we gladly offer hassle-free exchanges under the following terms:</p>
 
         <ul class="policy-list">
-          <li><strong>Exchange Period:</strong> Exchange claims must be logged within <strong>7 days</strong> from the date of package delivery.</li>
-          <li><strong>Product Condition:</strong> Articles must be unused, unwashed, unaltered, and returned with all original tag labels and signature packaging intact.</li>
-          <li><strong>Color Variation Notice:</strong> Slight variations in color shade or fabric texture due to studio lighting or screen display settings do not qualify as defects.</li>
-          <li><strong>Custom &amp; Sale Items:</strong> Custom-stitched outfits, altered abayas, or items bought under "Final Sale" promotions are non-exchangeable unless defective.</li>
+          <li><i class="fa-solid fa-circle-check list-icon"></i><strong>Exchange Period:</strong> Exchange claims must be logged within <strong>7 days</strong> from the date of package delivery.</li>
+          <li><i class="fa-solid fa-circle-check list-icon"></i><strong>Product Condition:</strong> Articles must be unused, unwashed, unaltered, and returned with all original tag labels and signature packaging intact.</li>
+          <li><i class="fa-solid fa-circle-check list-icon"></i><strong>Color Variation Notice:</strong> Slight variations in color shade or fabric texture due to studio lighting or screen display settings do not qualify as defects.</li>
+          <li><i class="fa-solid fa-circle-check list-icon"></i><strong>Custom &amp; Sale Items:</strong> Custom-stitched outfits, altered abayas, or items bought under "Final Sale" promotions are non-exchangeable unless defective.</li>
         </ul>
 
         <h3>How to Request an Exchange:</h3>
@@ -566,36 +449,36 @@
 
       <!-- 2. Shipping & Delivery Policy -->
       <section class="policy-section">
-        <h2><span>ðŸš›</span> Shipping &amp; Delivery Information</h2>
+        <h2><i class="fa-solid fa-box-open"></i> Shipping &amp; Delivery Information</h2>
         <p>We partner with premier courier services across Pakistan to ensure your handcrafted orders arrive safely and promptly.</p>
 
         <ul class="policy-list">
-          <li><strong>Standard Delivery Timeline:</strong> Major cities (Lahore, Karachi, Islamabad, Gujranwala, Faisalabad, Rawalpindi) receive orders within <strong>2 to 4 business days</strong>. Remote areas require 4 to 6 business days.</li>
-          <li><strong>Shipping Charges:</strong> A nominal flat rate of <strong>Rs. 250</strong> applies nationwide.</li>
-          <li><strong>Free Shipping:</strong> All orders above <strong>Rs. 5,000</strong> qualify for complimentary free delivery.</li>
-          <li><strong>Cash on Delivery (COD):</strong> Available for all deliveries across Pakistan up to Rs. 30,000.</li>
+          <li><i class="fa-solid fa-circle-check list-icon"></i><strong>Standard Delivery Timeline:</strong> Major cities (Lahore, Karachi, Islamabad, Gujranwala, Faisalabad, Rawalpindi) receive orders within <strong>2 to 4 business days</strong>. Remote areas require 4 to 6 business days.</li>
+          <li><i class="fa-solid fa-circle-check list-icon"></i><strong>Shipping Charges:</strong> A nominal flat rate of <strong>Rs. 250</strong> applies nationwide.</li>
+          <li><i class="fa-solid fa-circle-check list-icon"></i><strong>Free Shipping:</strong> All orders above <strong>Rs. 5,000</strong> qualify for complimentary free delivery.</li>
+          <li><i class="fa-solid fa-circle-check list-icon"></i><strong>Cash on Delivery (COD):</strong> Available for all deliveries across Pakistan up to Rs. 30,000.</li>
         </ul>
       </section>
 
       <!-- 3. Refunds & Damages Policy -->
       <section class="policy-section">
-        <h2><span>ðŸ’³</span> Damaged Items &amp; Refund Terms</h2>
+        <h2><i class="fa-solid fa-shield-heart"></i> Damaged Items &amp; Refund Terms</h2>
         <p>Every piece undergoes strict quality inspections prior to dispatch. However, in the rare event that an item arrives damaged or incorrect:</p>
 
         <ul class="policy-list">
-          <li><strong>Damaged Arrivals:</strong> Notify our care team within 24 hours of delivery with unboxing photos/videos. We will send a fresh replacement at zero additional shipping fee.</li>
-          <li><strong>Monetary Refunds:</strong> Cash refunds are issued via direct bank transfer or JazzCash/EasyPaisa strictly in cases of manufacturing flaws or stock unavailability. Normal size exchanges are fulfilled via replacement or online store credit.</li>
+          <li><i class="fa-solid fa-circle-check list-icon"></i><strong>Damaged Arrivals:</strong> Notify our care team within 24 hours of delivery with unboxing photos/videos. We will send a fresh replacement at zero additional shipping fee.</li>
+          <li><i class="fa-solid fa-circle-check list-icon"></i><strong>Monetary Refunds:</strong> Cash refunds are issued via direct bank transfer or JazzCash/EasyPaisa strictly in cases of manufacturing flaws or stock unavailability. Normal size exchanges are fulfilled via replacement or online store credit.</li>
         </ul>
       </section>
 
       <!-- 4. Frequently Asked Questions -->
       <section class="policy-section" id="faq-items">
-        <h2><span>â“</span> Frequently Asked Questions</h2>
+        <h2><i class="fa-regular fa-circle-question"></i> Frequently Asked Questions</h2>
         <div class="faq-list">
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
               <span>How do I check my order status?</span>
-              <span class="faq-icon">+</span>
+              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
             </button>
             <div class="faq-answer">
               <p>Once your order is dispatched, you will receive a SMS and Email notification containing your courier tracking number (TCS, CallCourier, or Leopards).</p>
@@ -605,7 +488,7 @@
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
               <span>Who pays for return shipping charges on exchanges?</span>
-              <span class="faq-icon">+</span>
+              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
             </button>
             <div class="faq-answer">
               <p>For standard size/color exchanges, customer pays for returning the item to us (approx Rs. 200). If the mistake was on our end (defect or wrong item sent), Anahat covers all courier fees.</p>
@@ -615,7 +498,7 @@
           <div class="faq-item">
             <button class="faq-question" onclick="toggleFaq(this)">
               <span>Can I exchange a Hijab or Stole for hygiene reasons?</span>
-              <span class="faq-icon">+</span>
+              <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
             </button>
             <div class="faq-answer">
               <p>Hijabs and Stoles can be exchanged as long as they are completely unworn, scent-free, and in their original sealed transparent packaging.</p>
@@ -629,7 +512,7 @@
         <h3>Need Personal Assistance?</h3>
         <p>Our dedicated customer care team is available Monday through Saturday (10 AM - 7 PM PKT) to assist you with sizing, orders, and custom queries.</p>
         <a href="https://wa.me/923274518801?text=Hi%20Anahat,%20I%20need%20assistance%20regarding%20returns,%20exchanges,%20or%20shipping." target="_blank" rel="noopener noreferrer" class="support-btn">
-          <span>ðŸ’¬ Chat with Support</span>
+          <span><i class="fa-brands fa-whatsapp"></i> Chat with Support</span>
         </a>
       </div>
     </div>
@@ -641,17 +524,15 @@
   <!-- Toast Notification -->
   <div class="toast" id="toast" role="status"></div>
 
-
-
-
-<!-- ======================================
-globle.js for component functionality
-=========================================== -->
-
-
-<script src="/static/global.js"></script>
-
+  <!-- Global JS -->
+  <script src="/static/global.js"></script>
   
+  <script>
+    function toggleFaq(button) {
+      const item = button.parentElement;
+      item.classList.toggle('open');
+    }
+  </script>
 </body>
-</html>
 
+</html>
